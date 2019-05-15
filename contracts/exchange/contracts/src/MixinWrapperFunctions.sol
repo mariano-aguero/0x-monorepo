@@ -23,7 +23,6 @@ import "@0x/contracts-utils/contracts/src/ReentrancyGuard.sol";
 import "@0x/contracts-exchange-libs/contracts/src/LibMath.sol";
 import "@0x/contracts-exchange-libs/contracts/src/LibOrder.sol";
 import "@0x/contracts-exchange-libs/contracts/src/LibFillResults.sol";
-import "@0x/contracts-exchange-libs/contracts/src/LibAbiEncoder.sol";
 import "./mixins/MExchangeCore.sol";
 import "./mixins/MWrapperFunctions.sol";
 import "./mixins/MExchangeRichErrors.sol";
@@ -33,7 +32,6 @@ contract MixinWrapperFunctions is
     ReentrancyGuard,
     LibMath,
     LibFillResults,
-    LibAbiEncoder,
     MExchangeCore,
     MWrapperFunctions,
     MExchangeRichErrors
@@ -74,7 +72,10 @@ contract MixinWrapperFunctions is
         returns (FillResults memory fillResults)
     {
         // ABI encode calldata for `fillOrder`
-        bytes memory fillOrderCalldata = _abiEncodeFillOrder(
+        bytes memory fillOrderCalldata = abi.encodeWithSelector(
+            // bytes4(keccak256("fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes,bytes,bytes),uint256,bytes)"))
+            // = 0x9b44d556
+            0x9b44d556,
             order,
             takerAssetFillAmount,
             signature
