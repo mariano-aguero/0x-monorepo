@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'ts/components/button';
 import { Section } from 'ts/components/newLayout';
-import { Heading, Paragraph } from 'ts/components/text';
 
 interface Props {
     children?: React.ReactNode;
@@ -57,9 +55,7 @@ export const ShowcaseSection = (props: Props) => (
     <Wrap paddingMobile={props.paddingMobile} sectionPadding={props.sectionPadding}>
         <MobileImg src={`${props.showcaseImgSrc.slice(0, -4)}_mobile.png`} />
         <Section maxWidth={props.maxWidth} padding={'80px 0'}>
-            <ContentWrap>
-                {props.children}
-            </ContentWrap>
+            <ContentWrap>{props.children}</ContentWrap>
         </Section>
         <ShowcaseImg src={props.showcaseImgSrc} />
     </Wrap>

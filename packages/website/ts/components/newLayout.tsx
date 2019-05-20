@@ -109,7 +109,7 @@ const Wrap = styled(FlexWrap)<WrapProps>`
     text-align: ${props => props.isTextCentered && 'center'};
     margin: 0 auto;
     @media (max-width: 768px) {
-        width: ${props => !!props.bgColor ? 'calc(100% - 60px)' : '100%'};
+        width: ${props => (!!props.bgColor ? 'calc(100% - 60px)' : '100%')};
     }
 `;
 

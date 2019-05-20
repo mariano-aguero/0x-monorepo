@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { Button } from 'ts/components/button';
-import { Icon } from 'ts/components/icon';
 import { Heading, Paragraph } from 'ts/components/text';
 
 export interface Action {

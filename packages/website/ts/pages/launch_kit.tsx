@@ -3,13 +3,12 @@ import * as React from 'react';
 import { Banner } from 'ts/components/banner';
 import { Button } from 'ts/components/button';
 import { CheckedLi, CheckedUl } from 'ts/components/checkmark_list';
-import { SimpleDefinition } from 'ts/components/simple_definition';
 import { Definition } from 'ts/components/definition';
 import { DocumentTitle } from 'ts/components/document_title';
 import { Hero } from 'ts/components/hero';
-import { Icon } from 'ts/components/icon';
 import { Section } from 'ts/components/newLayout';
 import { ShowcaseSection } from 'ts/components/showcase_section';
+import { SimpleDefinition } from 'ts/components/simple_definition';
 import { SiteWrap } from 'ts/components/siteWrap';
 import { Heading } from 'ts/components/text';
 import { constants } from 'ts/utils/constants';
@@ -82,9 +81,7 @@ export class NextLaunchKit extends React.Component {
                     isFullWidth={true}
                     title="0x Launch Kit"
                     description="Launch a relayer in under a minute"
-                    background={
-                        <BackgroundMarquee imgSrcUrl="images/launch_kit/background_marquee.png" />
-                    }
+                    background={<BackgroundMarquee imgSrcUrl="images/launch_kit/background_marquee.png" />}
                     actions={<HeroActions />}
                     sectionPadding={'120px 0 180px 0'}
                 />
@@ -119,7 +116,12 @@ export class NextLaunchKit extends React.Component {
                 </Section>
 
                 {_.map(offersData, (item, index) => (
-                    <ShowcaseSection maxWidth="1170px" showcaseImgSrc={item.showcaseUrl} paddingMobile={index === 0 ? '80px 0 40 0' : '40px 0'} sectionPadding={index === 0 ? '160px 0 80px 0' : '80px 0'}>
+                    <ShowcaseSection
+                        maxWidth="1170px"
+                        showcaseImgSrc={item.showcaseUrl}
+                        paddingMobile={index === 0 ? '80px 0 40 0' : '40px 0'}
+                        sectionPadding={index === 0 ? '160px 0 80px 0' : '80px 0'}
+                    >
                         <SimpleDefinition
                             key={`offers-${index}`}
                             title={item.title}
@@ -168,7 +170,13 @@ const HeroActions = () => (
         <Button href={constants.URL_LAUNCH_KIT} isInline={true} target="_blank">
             Get Started
         </Button>
-        <Button href={constants.URL_LAUNCH_KIT_BLOG_POST} transparentBgColor={'#000000'} isTransparent={true} isInline={true} target="_blank">
+        <Button
+            href={constants.URL_LAUNCH_KIT_BLOG_POST}
+            transparentBgColor={'#000000'}
+            isTransparent={true}
+            isInline={true}
+            target="_blank"
+        >
             Learn More!
         </Button>
     </React.Fragment>

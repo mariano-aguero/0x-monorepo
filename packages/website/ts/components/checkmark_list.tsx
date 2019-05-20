@@ -31,7 +31,7 @@ interface CheckedLiProps {
 
 export const CheckedLi = (props: CheckedLiProps) => (
     <Li>
-        <Checkmark/>
+        <Checkmark />
         {props.children}
     </Li>
 );

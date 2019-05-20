@@ -18,62 +18,61 @@ interface MarqueeWrapProps {
 }
 
 const MarqueeWrap = styled.div<MarqueeWrapProps>`
-  width: 100%;
-  height: ${props => props.height || '100%'};
-  overflow: hidden;
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
     width: 100%;
     height: ${props => props.height || '100%'};
-    left: 0;
-    top: 0;
-    background: linear-gradient(180.18deg, #000000 11.09%, rgba(0, 0, 0, 0.8) 62.74%, rgba(0, 0, 0, 0) 103.8%);
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    height: 4rem;
-    left: -2rem;
-    right: -2rem;
-    bottom: -2rem;
-    filter: blur(1rem);
-    z-index: 10;
-    background: #000;
-  }
-
-  @media (max-width: 768px) {
     overflow: hidden;
-  }
+    position: relative;
 
-  > div {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-    transform: translate3d(0, -${props => props.imgHeightInPx}px, 0);
-  }
-
-  @media (min-width: 768px) {
-    > div {
-      height: ${props => props.imgHeightInPx * props.imgRepeatCt}px;
-      animation: ${props => scrollFactory(props.imgHeightInPx, props.imgRepeatCt)} 60s linear infinite;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: ${props => props.height || '100%'};
+        left: 0;
+        top: 0;
+        background: linear-gradient(180.18deg, #000000 11.09%, rgba(0, 0, 0, 0.8) 62.74%, rgba(0, 0, 0, 0) 103.8%);
     }
-  }
 
-  @media (max-width: 768px) {
-    > div {
-        height: ${props => props.imgHeightInPx * props.imgRepeatCt}px;
-        animation: ${props => scrollMobileFactory(props.imgHeightInPx, props.imgRepeatCt)} 60s linear infinite;
+    &:before {
+        content: '';
+        position: absolute;
+        height: 4rem;
+        left: -2rem;
+        right: -2rem;
+        bottom: -2rem;
+        filter: blur(1rem);
+        z-index: 10;
+        background: #000;
     }
-  }
+
+    @media (max-width: 768px) {
+        overflow: hidden;
+    }
+
+    > div {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        will-change: transform;
+        transform: translate3d(0, -${props => props.imgHeightInPx}px, 0);
+    }
+
+    @media (min-width: 768px) {
+        > div {
+            height: ${props => props.imgHeightInPx * props.imgRepeatCt}px;
+            animation: ${props => scrollFactory(props.imgHeightInPx, props.imgRepeatCt)} 60s linear infinite;
+        }
+    }
+
+    @media (max-width: 768px) {
+        > div {
+            height: ${props => props.imgHeightInPx * props.imgRepeatCt}px;
+            animation: ${props => scrollMobileFactory(props.imgHeightInPx, props.imgRepeatCt)} 60s linear infinite;
+        }
+    }
 `;
 
-interface CardProps {
-}
+interface CardProps {}
 
 const Card = styled.div<CardProps>`
     opacity: 1;
@@ -128,7 +127,12 @@ export class BackgroundMarquee extends React.Component<BackgroundMarqueeProps> {
                 <div>
                     {[...Array(this.state.imgRepeatCt)].map((item, index) => (
                         <Card key={`card-${index}`}>
-                            <MarqueeImg onLoad={index === 0 ? this._onImageUpdate : null} ref={ref => index === 0 ? this._imageRef = ref : null} src={this.props.imgSrcUrl} alt="" />
+                            <MarqueeImg
+                                onLoad={index === 0 ? this._onImageUpdate : null}
+                                ref={ref => (index === 0 ? (this._imageRef = ref) : null)}
+                                src={this.props.imgSrcUrl}
+                                alt=""
+                            />
                         </Card>
                     ))}
                 </div>
@@ -137,8 +141,8 @@ export class BackgroundMarquee extends React.Component<BackgroundMarqueeProps> {
     }
 
     private readonly _onImageUpdate = () => {
-      if (!!this._imageRef) {
-        this.setState({imgHeightInPx: this._imageRef.clientHeight});
-      }
+        if (!!this._imageRef) {
+            this.setState({ imgHeightInPx: this._imageRef.clientHeight });
+        }
     };
-};
+}

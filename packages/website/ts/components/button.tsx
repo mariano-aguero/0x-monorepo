@@ -70,7 +70,8 @@ const ButtonBase = styled.button<ButtonInterface>`
     border: 1px solid transparent;
     display: inline-block;
     background-color: ${props => props.bgColor || colors.brandLight};
-    background-color: ${props => (props.isTransparent || props.isWithArrow) && (props.transparentBgColor || 'transparent')};
+    background-color: ${props =>
+        (props.isTransparent || props.isWithArrow) && (props.transparentBgColor || 'transparent')};
     border-color: ${props => props.isTransparent && !props.isWithArrow && props.borderColor};
     color: ${props => (props.isAccentColor ? props.theme.linkColor : props.color || props.theme.textColor)};
     padding: ${props =>
